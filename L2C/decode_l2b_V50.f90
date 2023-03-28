@@ -32,7 +32,7 @@ subroutine decode_l2b(iorbit,filename_l2b, start_time, ierr)
 
    ierr=0
 
-   open(unit=2,file=filename_l2b,status='old',action='read',form='binary')
+   open(unit=2,file=filename_l2b,status='old',action='read',form='unformatted',access='stream')
 
    read(2) vernum,iorbitx,start_time,xlon_node1,xlon_node2,klon_end
    if(iorbitx.ne.iorbit) then
