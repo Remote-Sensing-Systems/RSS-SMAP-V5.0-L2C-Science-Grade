@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+    branches: ["main"]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: gfortran --version
+
+      - name: Build
+        run: |
+          cd L2C
+          gfortran -o MAKE_SMAP_L2C_V50_ascii MAKE_SMAP_L2C_V50_ascii.f90
