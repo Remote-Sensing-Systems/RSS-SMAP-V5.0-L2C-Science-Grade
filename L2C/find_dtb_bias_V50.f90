@@ -20,8 +20,8 @@ subroutine find_dtb_bias(iorbit,    dtf_bias, tf_ave, iflag)
 
    integer(4), parameter                       ::  irecl=76
 
-   integer(4), parameter                       ::  maxtry=100, delay=1, iorbit_max=150000
-   integer(4)                                  ::  itry, iostat, ierr
+   integer(4), parameter                       ::  iorbit_max=150000
+   integer(4)                                  ::  ierr
 
    integer(4), parameter                       ::  iu=30
 
@@ -56,15 +56,8 @@ subroutine find_dtb_bias(iorbit,    dtf_bias, tf_ave, iflag)
 
    ! Step 1: Open direct access file with TB meas - exp values for each orbit
    call get_dir_paths(table_dir, data_dir)
-   do itry = 1,maxtry
-      open(unit=iu,file=trim(table_dir) // '/' // dtb_statfile,form='unformatted',status='old',action='read',&
-      &access='direct', recl=irecl, IOSTAT=iostat)
-      if (iostat/=0) then
-         call SLEEP(delay)
-      else ! file is ready for reading
-         exit
-      endif
-   enddo ! try to open direct access files
+   open(unit=iu,file=trim(table_dir) // '/' // dtb_statfile,form='unformatted',status='old',action='read',&
+   &access='direct', recl=irecl)
    write(*,*) 'file open!'
 
    ! Step 2 : Calculate centered running 3-day backward average
