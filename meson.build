@@ -2,10 +2,8 @@ project('smap-l2c-science-grade',
         'fortran',
         version : '0.1',
         default_options : [
-          'warning_level=0',
-          # TODO: enable these two eventually
-          # 'warning_level=3',
-          # 'fortran_std=f2008',
+          'warning_level=3',
+          'fortran_std=f2008',
         ],
         meson_version : '>=0.56')
 
