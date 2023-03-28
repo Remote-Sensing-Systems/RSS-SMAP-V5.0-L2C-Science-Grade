@@ -6,13 +6,20 @@ This code is written in Fortran and is set up to be complied using the `gfortran
 
 Also contained in the `sample_data` subfolder are example output L2C ASCII files (these end in `output_rss.txt`).  Users should first check to see that they can replicate these ASCII output files by following the instructions below.  Once done, users may edit and adapt the science-grade L2C processing code to their own needs.  
 
-## Compiling the Code
+## Compiling the code
 
-To run this code, users must first compile the `MAKE_SMAP_L2C_V50_ascii.f90` routine located in the `L2C` folder.  The suggested way to compile this code is with `gfortran` via the following command in their terminal:
+All source files are in the `L2C` folder, where `MAKE_SMAP_L2C_V50_ascii.f90` is
+the main program and it depends on the remaining `.f90` files included.
 
-`gfortran -fdec-math MAKE_SMAP_L2C_V50_ascii.f90 -o MAKE_SMAP_L2C_V50_ascii`
+[Meson](https://mesonbuild.com/) is used to build the code. Using a build
+directory named `build`:
 
-Note that the user may change the executable name after the `-o` flag to whatever they would like.  It is set to `MAKE_SMAP_L2C_V50_ascii` for the purpose of this demo.
+```bash
+meson setup build .
+meson compile -C build
+```
+
+The output executable is `build/MAKE_SMAP_L2C_V50_ascii`.
 
 ## Setting the directories
 At present, there are two folders containing external files that the routines and subroutines of the science-grade L2C code require in order to run. These are the `tables_L2C` and `sample_data` subfolders.  If users decide to keep the directory structure the same as it is on GitHub, then they may skip this step and move on to running the code.  However, if users wish to place the data located in `tables_L2C` and `sample_data` in different locations, they must explicitly tell the code these locations before it can be run.  This is done via the following terminal commands:
@@ -22,7 +29,7 @@ At present, there are two folders containing external files that the routines an
 
 Where `TABLE_DIRNAME` points to the location of the contents in the `tables_L2C` folder and `DATA_DIRNAME` points to the location of the contents of the `sample_data` folder.  Note that, if the users decide to change the directory/folder structure, all data from the `tables_L2C` folder must remain in a folder together and all data from the `sample_data` folder must remain in a folder together. 
 
-## Running the Code
+## Running the code
 
 Once the code has been compiled and the directories have been defined, the user will be able to run the code with the following command in their terminal:
 
