@@ -7,11 +7,11 @@
          implicit none
          CHARACTER(1) AMASK(45,180,12)
          CHARACTER(LEN=200) FILENAME
-         INTEGER*4 IFAC(8)
-         INTEGER*4 ISTART
-         INTEGER*4 ILON,ILAT,JLON,IMON
-         INTEGER*4 IBIT,III,ICE
-         REAL*4 XLAT,XLON
+         INTEGER(4) IFAC(8)
+         INTEGER(4) ISTART
+         INTEGER(4) ILON,ILAT,JLON,IMON
+         INTEGER(4) IBIT,III,ICE
+         REAL(4) XLAT,XLON
 
          DATA IFAC/128,64,32,16,8,4,2,1/
 
