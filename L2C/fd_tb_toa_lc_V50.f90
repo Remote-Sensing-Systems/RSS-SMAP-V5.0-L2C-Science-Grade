@@ -100,7 +100,7 @@ subroutine fd_tb_toa_lc
 
             ! this block is unchanged
             if (abs(tbtoi(3))>1.0E-8 .or. abs(tbtoi(2))>1.0E-8) then
-               phix = atan2d(tbtoi(3),tbtoi(2))
+               phix = atan2(tbtoi(3),tbtoi(2)) / rad
                pra_smap(idir,ilon,ilat) = phix/2.0 ! measured SMAP pol rot angle assuming that U(TOA)=0
             else ! pol rotation angle ill-defined
                pra_smap(idir,ilon,ilat) =  missing_val4

@@ -30,7 +30,7 @@ subroutine adjust_tagal_ref(refl0,refl,transq0,transq,taearth,tagal_ref, tagal_r
 !     ===============================================================================================
 
    tbtoi = matmul(amat_IQ, taearth)
-   faraday_deg=0.5*atand(tbtoi(3)/tbtoi(2))
+   faraday_deg=0.5*atan(tbtoi(3)/tbtoi(2))/rad
 
 !     =================================================================================================================
 !     ========== convert normalized tagal to tbgal at toa (tagal_ref is found assuming no faraday rotation) ===========
