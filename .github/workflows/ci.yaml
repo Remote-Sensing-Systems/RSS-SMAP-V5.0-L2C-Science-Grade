@@ -16,7 +16,13 @@ jobs:
 
       - run: gfortran --version
 
-      - name: Build
+      - name: Build MAKE_SMAP_L2C_V50_ascii
         run: |
           cd L2C
           gfortran -o MAKE_SMAP_L2C_V50_ascii MAKE_SMAP_L2C_V50_ascii.f90
+
+      - name: Archive MAKE_SMAP_L2C_V50_ascii
+        uses: actions/upload-artifact@v3
+        with:
+          name: MAKE_SMAP_L2C_V50_ascii
+          path: L2C/MAKE_SMAP_L2C_V50_ascii
