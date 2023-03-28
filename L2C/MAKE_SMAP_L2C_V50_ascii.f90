@@ -5,8 +5,8 @@ include 'SMAP_ROUGHNESS_GMF_V3B_module.f90'
 include 'MATRIX.f90'
 include 'sss_module.f90'
 
-include '../L2B/get_filename_l2b_ascii.f90'
-include '../L2B/check_orbit.f90'
+include 'get_filename_l2b_ascii.f90'
+include 'check_orbit.f90'
 include 'read_l2b_ascii.f90'
 
 include 'allocate_L2C_arrays_V50.f90'
@@ -40,8 +40,8 @@ include 'stokes_converters.f90'
 
 include 'write_l2c_ascii.f90'
 
-include '../L2A/openbig.f90'
-include '../L2A/fd_date_2000.f90'
+include 'openbig.f90'
+include 'fd_date_2000.f90'
 
 
 
