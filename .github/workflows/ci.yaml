@@ -14,15 +14,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: gfortran --version
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install meson
 
       - name: Build MAKE_SMAP_L2C_V50_ascii
         run: |
-          cd L2C
-          gfortran -o MAKE_SMAP_L2C_V50_ascii MAKE_SMAP_L2C_V50_ascii.f90
+          meson setup build .
+          meson compile -C build
 
       - name: Archive MAKE_SMAP_L2C_V50_ascii
         uses: actions/upload-artifact@v3
         with:
           name: MAKE_SMAP_L2C_V50_ascii
-          path: L2C/MAKE_SMAP_L2C_V50_ascii
+          path: build/MAKE_SMAP_L2C_V50_ascii
