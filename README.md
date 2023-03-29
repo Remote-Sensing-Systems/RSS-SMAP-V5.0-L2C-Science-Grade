@@ -1,18 +1,19 @@
 # Remote Sensing Systems Science Grade SMAP V5 L2C Processing Algorithm
 
-This document was written to illustrate how users can run the Remote Sensing Systems Soil Moisture Active Passive (SMAP) Version 5 (V5) Level 2C (L2C) science-grade processing algorithm.  The science-grade processing algorithm is meant to be a user-friendly simplification of the full RSS SMAP V5 L2C processing code.
+This document was written to illustrate how users can run the Remote Sensing Systems Soil Moisture Active Passive (SMAP) Version 5 (V5) Level 2C (L2C) science-grade processing algorithm for sea-surface salinity (SSS) retrievals.  The science-grade processing algorithm is meant to be a user-friendly simplification of the full RSS SMAP V5 L2C processing code.  
+
+The science-grade code contains both the forward model (i.e., the calculation of 'expected' brightness and antenna temperatures) and the 40-km salinity retrieval algorithm, which is, effectively, and inversion of the forward model.  The smoothing to 70-km and the SMAP SSS uncertainty estimation are not contained in this package (although these are both available as part of the release of the full L2C processing code).  For more information on the full RSS SMAP SSS V5.0 retrieval algorithm and forward model, please see the [NASA/RSS SMAP Salinity Version 5.0 Validated Release ATBD](https://data.remss.com/smap/SSS/V05.0/documents/SMAP_NASA_RSS_Salinity_Release_V5.0.pdf).
 
 This code is written in Fortran and is set up to be complied using the `gfortran` compiler.  It inputs L2B ASCII files located in the `sample_data` subfolder and will output ASCII files containing relevant variables from the L2C processing.  Information on the contents of the input and output ASCII files can be found in `l2b_ascii_file_variable_list.md` and `l2c_ascii_variable_list.md`, respectively.
 
-Also contained in the `sample_data` subfolder are example output L2C ASCII files (these end in `output_rss.txt`).  Users should first check to see that they can replicate these ASCII output files by following the instructions below.  Once done, users may edit and adapt the science-grade L2C processing code to their own needs.  
+Also contained in the `sample_data` subfolder are example output L2C ASCII files (these end in `output_rss.txt`).  Users should first check to see that they can replicate these ASCII output files by following the instructions below.  Once done, users may edit and adapt the science-grade L2C processing code to their own needs.  Note that the data output in these L2C ASCII files are just a small subset of the variables than can be output by the L2C code.  For a full list of output L2C variables see section 12.1.4 of the ATBD given above.
 
 ## Compiling the code
 
 All source files are in the `L2C` folder, where `MAKE_SMAP_L2C_V50_ascii.f90` is
 the main program and it depends on the remaining `.f90` files included.
 
-[Meson](https://mesonbuild.com/) is used to build the code. Using a build
-directory named `build`:
+[Meson](https://mesonbuild.com/) is used to build the code. Once users have installed `meson`, they may compile the code using a build directory named `build` with the following commands:
 
 ```bash
 meson setup build .
@@ -31,9 +32,9 @@ Where `TABLE_DIRNAME` points to the location of the contents in the `tables_L2C`
 
 ## Running the code
 
-Once the code has been compiled and the directories have been defined, the user will be able to run the code with the following command in their terminal:
+Once the code has been compiled and the directories have been defined, the user will be able to run the code with the following command in their terminal (assuming they are one directory up from the `build` folder):
 
-`./MAKE_SMAP_L2C_V50_ascii 38362 38362 ##`
+`build/MAKE_SMAP_L2C_V50_ascii 38362 38362 ##`
 
 In this command, `38362` represents the start and end SMAP orbit.  This should remain unchanged for the purposes of attempting to replicate the output ASCII files located in the `sample_data` folder.  `##` represents the pixel number that the user wishes to run the code for.  There are 10 different 0.25x0.25 degree Earth grid pixels that can be used in this demo, each assigned a value between `1` and `10`.  Therefore, `##` should be an integer between `1` and `10`.  Information on these 10 pixels is given in `pixel_descriptions.md`.
 
