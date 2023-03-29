@@ -16,7 +16,7 @@ contains
       call get_environment_variable("SMAP_TABLE_DIR", table_dir, status=env_stat)
       if (env_stat == 1) then
          ! Variable does not exist so use the fallback value
-         table_dir = "../tables_L2C"
+         table_dir = "tables_L2C"
       else if (env_stat == 0) then
          ! Environment variable sucessfully read
          continue
@@ -28,7 +28,7 @@ contains
       call get_environment_variable("SMAP_DATA_DIR", data_dir, status=env_stat)
       if (env_stat == 1) then
          ! Variable does not exist so use the fallback value
-         data_dir = "../sample_data"
+         data_dir = "sample_data"
       else if (env_stat == 0) then
          ! Environment variable sucessfully read
          continue
