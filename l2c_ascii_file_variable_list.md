@@ -4,6 +4,7 @@ orbit number and `##` represents the pixel number (an integer between 1 and 10).
 Each of these values contained in a given file is for the pixel number in the L2C input ASCII file name.
 
 | Variable | Description |
+| --- | --- |
 | tb_toi | Brightness temperature at the top of the ionosphere.  There are 4 values for V-pol, H-pol, 3rd Stokes, and 4th stokes, respectively, in the first row (K). |
 | tb_toa | Brightness temperature at top of atmosphere BEFORE applying land correction.  There are 4 values for V-pol, H-pol, 3rd Stokes, and 4th stokes, respectively, in the second row (K). |
 | tb_sur | Brightness temperature of rough ocean surface BEFORE applying roughness correction.  There are 4 values for V-pol, H-pol, 3rd Stokes, and 4th stokes, respectively, in the third row (K). |
