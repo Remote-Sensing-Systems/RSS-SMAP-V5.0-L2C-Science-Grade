@@ -10,6 +10,6 @@ Each of these values contained in a given file is for the pixel number in the L2
 | tb_sur | Brightness temperature of rough ocean surface BEFORE applying roughness correction.  There are 4 values for V-pol, H-pol, 3rd Stokes, and 4th stokes, respectively, in the third row (K). |
 | tb_sur0 | Brightness temperature of flat ocean surface AFTER applying roughness correction. There are 4 values for V-pol, H-pol, 3rd Stokes, and 4th stokes, respectively, in the 4th row (K). |
 | sss_smap_40km | SMAP sea surface salinity at original 40km resolution (psu) |
-| iqc_flag | quality flags associated with the pixel measurement.  All are located in the 6th row.  For quality flag definitions please see the [RSS SMAP V5 ATBD] (https://data.remss.com/smap/SSS/V05.0/documents/SMAP_NASA_RSS_Salinity_Release_V5.0.pdf) |
+| iqc_flag | quality flags associated with the pixel measurement.  All are located in the 6th row.  For quality flag definitions please see the [RSS SMAP V5 ATBD](https://data.remss.com/smap/SSS/V05.0/documents/SMAP_NASA_RSS_Salinity_Release_V5.0.pdf) |
 | cellat | latitude of the pixel (degrees N; first column, 7th row) |
 | cellon | longitude of the pixel (degrees E; second column, 7th row) |
