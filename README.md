@@ -23,10 +23,11 @@ meson compile -C build
 The output executable is `build/MAKE_SMAP_L2C_V50_ascii`.
 
 ## Setting the directories
-At present, there are two folders containing external files that the routines and subroutines of the science-grade L2C code require in order to run. These are the `tables_L2C` and `sample_data` subfolders.  If users decide to keep the directory structure the same as it is on GitHub, then they may skip this step and move on to running the code.  However, if the data located in `tables_L2C` and `sample_data` are placed in different locations, these locations must be explicitly input before the code can be run.  This is done via the following terminal commands:
+At present, there are two folders containing external files that the routines and subroutines of the science-grade L2C code require in order to run. These are the `tables_L2C` and `sample_data` subfolders.  If users decide to keep the directory structure the same as it is on GitHub, then they may skip this step and move on to running the code.  However, if the data located in `tables_L2C` and `sample_data` are placed in different locations, these locations must be set as environment variables before running the code.  This is done via the following terminal commands:
 
-`export SMAP_TABLE_DIR="TABLE_DIRNAME"`
-`export SMAP_DATA_DIR="DATA_DIRNAME"`
+```
+export SMAP_TABLE_DIR="TABLE_DIRNAME" SMAP_DATA_DIR="DATA_DIRNAME"
+```
 
 Where `TABLE_DIRNAME` points to the location of the contents in the `tables_L2C` folder and `DATA_DIRNAME` points to the location of the contents of the `sample_data` folder.  Note that, if the directory/folder structure is changed, all data from the `tables_L2C` folder must remain in a folder together and all data from the `sample_data` folder must remain in a folder together. 
 
