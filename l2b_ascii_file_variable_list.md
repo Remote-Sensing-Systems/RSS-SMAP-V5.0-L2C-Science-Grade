@@ -5,6 +5,7 @@ Each of these values contained in a given file is for the pixel number in the L2
 Note that all listed variables from `tec` onward are ancillary data needed for the RSS SMAP V5 L2C processing.
 
 | Variable | Description |
+| --- | --- |
 | ilon | the index of the pixel's x-grid |
 | ilat | the index of the pixel's y-grid |
 | idir | the index of the pixel's look direction (1=for, 2=aft) |
