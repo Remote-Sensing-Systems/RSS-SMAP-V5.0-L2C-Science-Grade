@@ -1,6 +1,6 @@
 # Remote Sensing Systems Science Grade SMAP V5 L2C Processing Algorithm
 
-This document was written to illustrate how users can run the Remote Sensing Systems Soil Moisture Active Passive (SMAP) Version 5 (V5) Level 2C (L2C) science-grade processing algorithm for sea-surface salinity (SSS) retrievals.  The science-grade processing algorithm is meant to be a user-friendly simplification of the full RSS SMAP V5 L2C processing code.  
+This document was written to illustrate how to run the Remote Sensing Systems Soil Moisture Active Passive (SMAP) Version 5 (V5) Level 2C (L2C) science-grade processing algorithm for sea-surface salinity (SSS) retrievals.  The science-grade processing algorithm is meant to be a user-friendly simplification of the full RSS SMAP V5 L2C processing code.  
 
 The science-grade code contains both the forward model (i.e., the calculation of 'expected' brightness and antenna temperatures) and the 40-km salinity retrieval algorithm, which is, effectively, and inversion of the forward model.  The smoothing to 70-km and the SMAP SSS uncertainty estimation are not contained in this package (although these are both available as part of the release of the full L2C processing code).  For more information on the full RSS SMAP SSS V5.0 retrieval algorithm and forward model, please see the [NASA/RSS SMAP Salinity Version 5.0 Validated Release ATBD](https://data.remss.com/smap/SSS/V05.0/documents/SMAP_NASA_RSS_Salinity_Release_V5.0.pdf).
 
@@ -13,7 +13,7 @@ Also contained in the `sample_data` subfolder are example output L2C ASCII files
 All source files are in the `L2C` folder, where `MAKE_SMAP_L2C_V50_ascii.f90` is
 the main program and it depends on the remaining `.f90` files included.
 
-[Meson](https://mesonbuild.com/) is used to build the code. Once users have installed `meson`, they may compile the code using a build directory named `build` with the following commands:
+[Meson](https://mesonbuild.com/) is used to build the code. Once `meson` has been installed, the code may be compiled using a build directory named `build` with the following commands:
 
 ```bash
 meson setup build .
@@ -23,16 +23,16 @@ meson compile -C build
 The output executable is `build/MAKE_SMAP_L2C_V50_ascii`.
 
 ## Setting the directories
-At present, there are two folders containing external files that the routines and subroutines of the science-grade L2C code require in order to run. These are the `tables_L2C` and `sample_data` subfolders.  If users decide to keep the directory structure the same as it is on GitHub, then they may skip this step and move on to running the code.  However, if users wish to place the data located in `tables_L2C` and `sample_data` in different locations, they must explicitly tell the code these locations before it can be run.  This is done via the following terminal commands:
+At present, there are two folders containing external files that the routines and subroutines of the science-grade L2C code require in order to run. These are the `tables_L2C` and `sample_data` subfolders.  If users decide to keep the directory structure the same as it is on GitHub, then they may skip this step and move on to running the code.  However, if the data located in `tables_L2C` and `sample_data` are placed in different locations, these locations must be explicitly input before the code can be run.  This is done via the following terminal commands:
 
 `export SMAP_TABLE_DIR="TABLE_DIRNAME"`
 `export SMAP_DATA_DIR="DATA_DIRNAME"`
 
-Where `TABLE_DIRNAME` points to the location of the contents in the `tables_L2C` folder and `DATA_DIRNAME` points to the location of the contents of the `sample_data` folder.  Note that, if the users decide to change the directory/folder structure, all data from the `tables_L2C` folder must remain in a folder together and all data from the `sample_data` folder must remain in a folder together. 
+Where `TABLE_DIRNAME` points to the location of the contents in the `tables_L2C` folder and `DATA_DIRNAME` points to the location of the contents of the `sample_data` folder.  Note that, if the directory/folder structure is changed, all data from the `tables_L2C` folder must remain in a folder together and all data from the `sample_data` folder must remain in a folder together. 
 
 ## Running the code
 
-Once the code has been compiled and the directories have been defined, the user will be able to run the code with the following command in their terminal (assuming they are one directory up from the `build` folder):
+Once the code has been compiled and the directories have been defined, the code may be run with the following command in the terminal (assuming the code is being run one directory up from the `build` folder):
 
 `build/MAKE_SMAP_L2C_V50_ascii 38362 38362 ##`
 
