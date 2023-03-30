@@ -8,7 +8,7 @@ Note that all listed variables from `tec` onward are ancillary data needed for t
 | --- | --- | --- |
 | ilon | the index of the pixel's x-grid | integer between 1 and 1560 |
 | ilat | the index of the pixel's y-grid | integer between 1 and 720 |
-| idir | the index of the pixel's look direction | 1=for, 2=aft |
+| idir | the index of the pixel's look direction | 1=fore, 2=aft |
 | ifill | indicates if the Earth cell contains any resampled observations | 1=contains observations or 0=no observations |
 | alpha | SMAP scan angle | degrees |
 | iscan | center scan index of the target cell. Dummy argument not used in L2C processing. | N/A |
