@@ -24,7 +24,7 @@ Note that all listed variables from `tec` onward are ancillary data needed for t
 | monglt | moonglint angle | degrees |
 | gallat | latitudinal (polar) angle of specular reflection ray in ECI2000 | degrees |
 | gallon | longitudinal (azimuthal) angle of specular reflection ray in ECI2000 | degrees |
-| frdrot | Faraday rotation | degrees |
+| frdrot | Faraday rotation angle | degrees |
 | teclat | lat of the intersection of the ray with the ionospheric shell (450 km). Dummy argument not used in L2C processing. | degrees N |
 | teclon | lon of the intersection of the ray with the ionospheric shell (450 km). Dummy argument not used in L2C processing. | degrees E |
 | loss_ant | antenna loss | K |
