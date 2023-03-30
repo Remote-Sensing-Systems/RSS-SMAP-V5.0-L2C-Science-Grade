@@ -58,7 +58,7 @@ Note that all listed variables from `tec` onward are ancillary data needed for t
 | rain | IMERG rain rate. Resampled to SMAP resolution | mm hr-1 |
 | sst_err | ancillary sea-surface temperature error (from CMC) | K |
 | xobs_sat_ccmp | number of observations in ancillary CCMP pixel | N/A |
-| gice_est | estimated sea ice fraction weighted by antenna gain | value bewteen 0 and 1 |
+| gice_est | estimated sea ice fraction weighted by antenna gain | value between 0 and 1 |
 | dtb_sea_ice_corr | TB sea-ice correction applied at TB SUR 0 | K |
 | dtb_sea_ice_error_est | error associated with dtb_sea_ice_corr | K |
 | icezone | sea-ice contamination zone | value between 0 and 7 |
