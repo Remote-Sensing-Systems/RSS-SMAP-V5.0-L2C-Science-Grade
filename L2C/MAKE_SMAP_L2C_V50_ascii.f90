@@ -115,7 +115,7 @@ program MAKE_SMAP_L2C_V50_ascii
       write(*,*) '     calibration and reflector emissivity'
       call fd_date_2000(start_time, secyr,lyear,idayjl,imon,idaymo,secdy)
       isecdy=nint(secdy)
-      xhour = secdy/3600.
+      xhour = real(secdy/3600., 4)
 
       ! correct reflector temperature
       call correct_reflector_emissivity_V30
@@ -127,8 +127,8 @@ program MAKE_SMAP_L2C_V50_ascii
          cycle
       endif
 
-      dtb_bias_orbit(1:4) = dtf_bias(1:4)  !save
-      tf_ave_orbit(1:2)   = tf_ave(1:2)
+      dtb_bias_orbit(1:4) = real(dtf_bias(1:4), 4)  !save
+      tf_ave_orbit(1:2)   = real(tf_ave(1:2), 4)
 
       call correct_cal_drift_V30
 

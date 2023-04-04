@@ -29,14 +29,14 @@ subroutine adjust_tagal_ref(refl0,refl,transq0,transq,taearth,tagal_ref, tagal_r
 !     ==================== find estimates of earth tb toi and faraday rotation angle ================
 !     ===============================================================================================
 
-   tbtoi = matmul(amat_IQ, taearth)
-   faraday_deg=0.5*atan(tbtoi(3)/tbtoi(2))/rad
+   tbtoi = real(matmul(amat_IQ, taearth), 4)
+   faraday_deg=real(0.5*atan(tbtoi(3)/tbtoi(2))/rad, 4)
 
 !     =================================================================================================================
 !     ========== convert normalized tagal to tbgal at toa (tagal_ref is found assuming no faraday rotation) ===========
 !     =================================================================================================================
    do istokes=1,2
-      tb_gal_toa(istokes)=dot_product(amat_IQ(istokes,1:3),tagal_ref(1:3))
+      tb_gal_toa(istokes)=real(dot_product(amat_IQ(istokes,1:3),tagal_ref(1:3)), 4)
    enddo
    tb_gal_toa(3)=0.0
 
@@ -61,15 +61,15 @@ subroutine adjust_tagal_ref(refl0,refl,transq0,transq,taearth,tagal_ref, tagal_r
 !     =================================================================================================================
 
    tb_gal_toi(1)=tb_gal_toa(1)
-   tb_gal_toi(2)=tb_gal_toa(2)*cos((2*faraday_deg)*rad)
-   tb_gal_toi(3)=tb_gal_toa(2)*sin((2*faraday_deg)*rad)
+   tb_gal_toi(2)=real(tb_gal_toa(2)*cos((2*faraday_deg)*rad), 4)
+   tb_gal_toi(3)=real(tb_gal_toa(2)*sin((2*faraday_deg)*rad), 4)
 
 !     =================================================================================================================
 !     =============================== convert tb toi galatic radiation to antenna temperature =========================
 !     =================================================================================================================
 
    do istokes=1,3
-      tagal_ref_adj(istokes)=dot_product(amat_inv_IQ(istokes,1:3),tb_gal_toi(1:3))
+      tagal_ref_adj(istokes)=real(dot_product(amat_inv_IQ(istokes,1:3),tb_gal_toi(1:3)), 4)
    enddo
 
    return

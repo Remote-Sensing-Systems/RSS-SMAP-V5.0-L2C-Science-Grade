@@ -29,7 +29,7 @@ subroutine fdem0_meissner_wentz(freq,tht,sst,salinity, em0)
 
    call dielectric_meissner_wentz(sst,salinity,  e0s,e1s,e2s,n1s,n2s,sig)
 
-   costht=cos((tht)*rad)
+   costht=real(cos((tht)*rad), 4)
    sinsqtht=1.-costht*costht
 
 
@@ -40,8 +40,8 @@ subroutine fdem0_meissner_wentz(freq,tht,sst,salinity, em0)
    esqrt=csqrt(permit-sinsqtht)
    rh=(costht-esqrt)/(costht+esqrt)
    rv=(permit*costht-esqrt)/(permit*costht+esqrt)
-   em0(1)  =1.-rv*conjg(rv)
-   em0(2)  =1.-rh*conjg(rh)
+   em0(1)  =1.-real(rv*conjg(rv), 4)
+   em0(2)  =1.-real(rh*conjg(rh), 4)
 
    return
 end subroutine fdem0_meissner_wentz

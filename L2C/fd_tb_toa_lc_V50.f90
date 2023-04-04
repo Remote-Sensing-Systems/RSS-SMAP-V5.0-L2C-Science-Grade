@@ -66,7 +66,7 @@ subroutine fd_tb_toa_lc
             xbuf(1:2)  = taearth(1:2)
             call vh_to_stokes(xbuf)
             taearth(1:2) = xbuf(1:2) ! ta earth in IQ basis
-            tbtoi = matmul(amat_IQ, taearth)
+            tbtoi = real(matmul(amat_IQ, taearth), 4)
             xbuf(1:2) = tbtoi(1:2)
             call stokes_to_vh(xbuf)
             tbtoi(1:2) = xbuf(1:2)
@@ -100,7 +100,7 @@ subroutine fd_tb_toa_lc
 
             ! this block is unchanged
             if (abs(tbtoi(3))>1.0E-8 .or. abs(tbtoi(2))>1.0E-8) then
-               phix = atan2(tbtoi(3),tbtoi(2)) / rad
+               phix = real(atan2(tbtoi(3),tbtoi(2)) / rad, 4)
                pra_smap(idir,ilon,ilat) = phix/2.0 ! measured SMAP pol rot angle assuming that U(TOA)=0
             else ! pol rotation angle ill-defined
                pra_smap(idir,ilon,ilat) =  missing_val4
@@ -123,7 +123,7 @@ subroutine fd_tb_toa_lc
                xtime = time(idir,ilon,ilat)
                call fd_date_2000(xtime, secyr,lyear,idayjl,imon,idaymo,secdy)
                isecdy=nint(secdy)
-               xhour = secdy/3600.
+               xhour = real(secdy/3600., 4)
 
                call land_corr_step2(xlat, xlon, zang(idir,ilon,ilat), gland(idir,ilon,ilat), imon,  dtb_2)
 
