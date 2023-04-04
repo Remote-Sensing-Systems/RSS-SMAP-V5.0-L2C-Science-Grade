@@ -25,7 +25,7 @@ subroutine find_ta_gal_refl(ta_gal_refl_tab,gallat,gallon,wind, ta_gal_refl)
 
    brief=(wind+2)/5.  !add 2ms to wind
    if(brief.gt.3.999) brief=3.999
-   iwin1=1+brief
+   iwin1=int(1+brief, 4)
    iwin2=iwin1+1
    a1=iwin1-brief
    a2=1-a1
@@ -34,14 +34,14 @@ subroutine find_ta_gal_refl(ta_gal_refl_tab,gallat,gallon,wind, ta_gal_refl)
    if(wind.lt.5) then
       brief=(wind-1.5)/3.5
       if(brief.lt.0) brief=0
-      jwin1=1+brief
+      jwin1=int(1+brief, 4)
       jwin2=jwin1+1
       b1=jwin1-brief
       b2=1-b1
    else
       brief=wind/5.
       if(brief.gt.2.999) brief=2.999
-      jwin1=1+brief
+      jwin1=int(1+brief, 4)
       jwin2=jwin1+1
       b1=jwin1-brief
       b2=1-b1
