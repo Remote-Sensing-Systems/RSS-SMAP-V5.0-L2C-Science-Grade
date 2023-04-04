@@ -25,8 +25,6 @@ program MAKE_SMAP_L2C_V50_ascii
    real(8), dimension(2)   ::  tf_ave
 
 
-   integer(4), parameter   ::  ipublish=1   !=1 for published version with time stamp in filename
-
    character(len=10),dimension(3)          ::  sbuf
    integer(4), dimension(8)                ::  date_time
 
