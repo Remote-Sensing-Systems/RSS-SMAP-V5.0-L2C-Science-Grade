@@ -106,7 +106,7 @@ contains
       brief = (xwspd-ww0)/(ww1-ww0)
 
       do ipol=1,2
-         yy(ipol) = (1.0-brief)*dw_res_tab(ipol,i0) + brief*dw_res_tab(ipol,i1)
+         yy(ipol) = real((1.0-brief)*dw_res_tab(ipol,i0) + brief*dw_res_tab(ipol,i1), 4)
       enddo
 
       demiss_wind_res = yy
@@ -139,11 +139,11 @@ contains
       call fd_SMAP_harmonics(wspd,        aharm)
 
       do ipol=1,2 ! odd
-         demiss_rough_wdir(ipol) = aharm(1,ipol)*cos((phir)*rad) + aharm(2,ipol)*cos((2.0*phir)*rad)
+         demiss_rough_wdir(ipol) = real(aharm(1,ipol)*cos((phir)*rad) + aharm(2,ipol)*cos((2.0*phir)*rad), 4)
       enddo
 
       do ipol=3,4 ! even
-         demiss_rough_wdir(ipol) = aharm(1,ipol)*sin((phir)*rad) + aharm(2,ipol)*sin((2.0*phir)*rad)
+         demiss_rough_wdir(ipol) = real(aharm(1,ipol)*sin((phir)*rad) + aharm(2,ipol)*sin((2.0*phir)*rad), 4)
       enddo
 
       return
@@ -200,16 +200,16 @@ contains
          iharm=1
          ww = wspd
          if (wspd >= wcut) ww=wcut ! cutoff at wcut
-         fval = ww*acoef(iharm,ipol,1) + (ww**2) *acoef(iharm,ipol,2) +       (ww**3)*acoef(iharm,ipol,3) + &
-         &(ww**4)*acoef(iharm,ipol,4) +   (ww**5)*acoef(iharm,ipol,5)
+         fval = real(ww*acoef(iharm,ipol,1) + (ww**2) *acoef(iharm,ipol,2) +       (ww**3)*acoef(iharm,ipol,3) + &
+         &(ww**4)*acoef(iharm,ipol,4) +   (ww**5)*acoef(iharm,ipol,5), 4)
          A1(ipol)  = fval
 
          ! A2
          iharm=2
          ww = wspd
          if (wspd >= wcut) ww=wcut ! cutoff at wcut
-         fval = ww*acoef(iharm,ipol,1) + (ww**2) *acoef(iharm,ipol,2) +       (ww**3)*acoef(iharm,ipol,3) +  &
-         &(ww**4)*acoef(iharm,ipol,4) +   (ww**5)*acoef(iharm,ipol,5)
+         fval = real(ww*acoef(iharm,ipol,1) + (ww**2) *acoef(iharm,ipol,2) +       (ww**3)*acoef(iharm,ipol,3) +  &
+         &(ww**4)*acoef(iharm,ipol,4) +   (ww**5)*acoef(iharm,ipol,5), 4)
          A2(ipol)  = fval
 
       enddo !ipol
@@ -275,15 +275,15 @@ contains
 
          ! A0
          iharm=0
-         w0 = wspd_max_a(iharm,ipol,irad)
+         w0 = int(wspd_max_a(iharm,ipol,irad), 4)
          ww = wspd
          if (wspd >= w0) ww=w0 ! extrapolation at w0
          fval = &
-            ww*acoef(iharm,ipol,irad,1)  +  (ww**2)*acoef(iharm,ipol,irad,2) +       (ww**3)*acoef(iharm,ipol,irad,3) +&
-         &(ww**4)*acoef(iharm,ipol,irad,4) +       (ww**5)*acoef(iharm,ipol,irad,5)
+            real(ww*acoef(iharm,ipol,irad,1)  +  (ww**2)*acoef(iharm,ipol,irad,2) +       (ww**3)*acoef(iharm,ipol,irad,3) +&
+         &(ww**4)*acoef(iharm,ipol,irad,4) +       (ww**5)*acoef(iharm,ipol,irad,5), 4)
          dval = &
-            acoef(iharm,ipol,irad,1)  + (2.0*ww)*acoef(iharm,ipol,irad,2) + (3.0*(ww**2))*acoef(iharm,ipol,irad,3) +&
-         &(4.0*(ww**3))*acoef(iharm,ipol,irad,4) + (5.0*(ww**4))*acoef(iharm,ipol,irad,5)
+            real(acoef(iharm,ipol,irad,1)  + (2.0*ww)*acoef(iharm,ipol,irad,2) + (3.0*(ww**2))*acoef(iharm,ipol,irad,3) +&
+         &(4.0*(ww**3))*acoef(iharm,ipol,irad,4) + (5.0*(ww**4))*acoef(iharm,ipol,irad,5), 4)
 
          if (wspd<=w0) then
             A0(ipol) = fval
@@ -296,26 +296,26 @@ contains
 
          ! A1
          iharm=1
-         w1 = wspd_max_a(iharm,ipol,irad)
+         w1 = real(wspd_max_a(iharm,ipol,irad), 4)
          ww = wspd
          if (wspd >= w1) ww=w1 ! cutoff at w1
-         fval = ww*acoef(iharm,ipol,irad,1) + (ww**2) *acoef(iharm,ipol,irad,2) +       (ww**3)*acoef(iharm,ipol,irad,3)      +&
-         &(ww**4)*acoef(iharm,ipol,irad,4) +       (ww**5)*acoef(iharm,ipol,irad,5)
-         dval =    acoef(iharm,ipol,irad,1) + (2.0*ww)*acoef(iharm,ipol,irad,2) + (3.0*(ww**2))*acoef(iharm,ipol,irad,3)      +&
-         &(4.0*(ww**3))*acoef(iharm,ipol,irad,4) + (5.0*(ww**4))*acoef(iharm,ipol,irad,5)
+         fval = real(ww*acoef(iharm,ipol,irad,1) + (ww**2) *acoef(iharm,ipol,irad,2) +       (ww**3)*acoef(iharm,ipol,irad,3) +&
+         &(ww**4)*acoef(iharm,ipol,irad,4) +       (ww**5)*acoef(iharm,ipol,irad,5), 4)
+         dval =    real(acoef(iharm,ipol,irad,1) + (2.0*ww)*acoef(iharm,ipol,irad,2) + (3.0*(ww**2))*acoef(iharm,ipol,irad,3) +&
+         &(4.0*(ww**3))*acoef(iharm,ipol,irad,4) + (5.0*(ww**4))*acoef(iharm,ipol,irad,5), 4)
 
          A1(ipol)  = fval
          dA1(ipol)  = dval
 
          ! A2
          iharm=2
-         w2 = wspd_max_a(iharm,ipol,irad)
+         w2 = real(wspd_max_a(iharm,ipol,irad), 4)
          ww = wspd
          if (wspd >= w2) ww=w2 ! cutoff at w2
-         fval = ww*acoef(iharm,ipol,irad,1) + (ww**2)      *acoef(iharm,ipol,irad,2) +        (ww**3)*acoef(iharm,ipol,irad,3) +&
-         &(ww**4)*acoef(iharm,ipol,irad,4) +       (ww**5)*acoef(iharm,ipol,irad,5)
-         dval =    acoef(iharm,ipol,irad,1) + (2.0*ww)     *acoef(iharm,ipol,irad,2) +  (3.0*(ww**2))*acoef(iharm,ipol,irad,3) +&
-         &(4.0*(ww**3))*acoef(iharm,ipol,irad,4) + (5.0*(ww**4))*acoef(iharm,ipol,irad,5)
+         fval = real(ww*acoef(iharm,ipol,irad,1) + (ww**2)*acoef(iharm,ipol,irad,2) + (ww**3)*acoef(iharm,ipol,irad,3) +&
+         &(ww**4)*acoef(iharm,ipol,irad,4) +       (ww**5)*acoef(iharm,ipol,irad,5), 4)
+         dval =    real(acoef(iharm,ipol,irad,1) + (2.0*ww)*acoef(iharm,ipol,irad,2) +  (3.0*(ww**2))*acoef(iharm,ipol,irad,3) +&
+         &(4.0*(ww**3))*acoef(iharm,ipol,irad,4) + (5.0*(ww**4))*acoef(iharm,ipol,irad,5), 4)
 
          A2(ipol)  = fval
          dA2(ipol) = dval
@@ -617,7 +617,7 @@ contains
       if(xmon.gt.11.9999) xmon=11.9999
 
       brief=xmon-0.5
-      i1=1+brief
+      i1=int(1+brief, 4)
       i2=i1+1
       a1=i1-brief
       a2=1-a1
@@ -625,7 +625,7 @@ contains
       if(i2.eq.13) i2= 1
 
       brief=xlat+89.5
-      j1=1+brief
+      j1=int(1+brief, 4)
       j2=j1+1
       b1=j1-brief
       b2=1.-b1
@@ -633,7 +633,7 @@ contains
       if(j2.eq.181) j2=180
 
       brief=xlon-0.5
-      k1=1+brief
+      k1=int(1+brief, 4)
       k2=k1+1
       c1=k1-brief
       c2=1-c1
@@ -642,7 +642,7 @@ contains
 
       brief=tht
       if(brief.gt.89.999) brief=89.999
-      l1=1+brief
+      l1=int(1+brief, 4)
       l2=l1+1
       d1=l1-brief
       d2=1-d1
@@ -700,14 +700,14 @@ contains
 
       if(itype.eq.3)  permit=(3.,-0.1)        !sea ice
 
-      costht=cos((tht)*rad)
+      costht=real(cos((tht)*rad), 4)
       sinsqtht=1.-costht*costht
 
       esqrt=csqrt(permit-sinsqtht)
       rh=(costht-esqrt)/(costht+esqrt)
       rv=(permit*costht-esqrt)/(permit*costht+esqrt)
-      refl(1) =rv*conjg(rv)
-      refl(2) =rh*conjg(rh)
+      refl(1) =real(rv*conjg(rv), 4)
+      refl(2) =real(rh*conjg(rh), 4)
 
       return
    end subroutine fd_land_refl
@@ -724,14 +724,14 @@ contains
 
       permit=(3.,-0.1)        !sea ice
 
-      costht=cos((tht)*rad)
+      costht=real(cos((tht)*rad), 4)
       sinsqtht=1.-costht*costht
 
       esqrt=csqrt(permit-sinsqtht)
       rh=(costht-esqrt)/(costht+esqrt)
       rv=(permit*costht-esqrt)/(permit*costht+esqrt)
-      refl(1) =rv*conjg(rv)
-      refl(2) =rh*conjg(rh)
+      refl(1) =real(rv*conjg(rv), 4)
+      refl(2) =real(rh*conjg(rh), 4)
 
       return
    end subroutine fd_seaice_refl
