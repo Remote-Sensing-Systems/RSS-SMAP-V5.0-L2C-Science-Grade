@@ -50,10 +50,10 @@ subroutine correct_reflector_emissivity_V30
             if (abs(temp_refl(2)-missing_val4)<0.1) cycle
 
             temp_refl(1:2) = temp_refl(1:2) +  delta_temp_refl(1:2)
-            dtemp_ant(1:2,idir,ilon,ilat) =  delta_temp_refl(1:2)
+            dtemp_ant(1:2,idir,ilon,ilat) =  real(delta_temp_refl(1:2), 4)
 
-            xtf(1)   = (xtf(1) - emiss_refl_adj(1)*temp_refl(1)) / (1.0-emiss_refl_adj(1))
-            xtf(2)   = (xtf(2) - emiss_refl_adj(2)*temp_refl(2)) / (1.0-emiss_refl_adj(2))
+            xtf(1)   = real((xtf(1) - emiss_refl_adj(1)*temp_refl(1)) / (1.0-emiss_refl_adj(1)), 4)
+            xtf(2)   = real((xtf(2) - emiss_refl_adj(2)*temp_refl(2)) / (1.0-emiss_refl_adj(2)), 4)
             xtf(3)   =  xtf(3)/sqrt((1.0-emiss_refl_adj(1))*(1.0-emiss_refl_adj(2)))
             xtf(4)   =  xtf(4)/sqrt((1.0-emiss_refl_adj(1))*(1.0-emiss_refl_adj(2)))
 
