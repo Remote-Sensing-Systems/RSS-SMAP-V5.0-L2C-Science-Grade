@@ -6,7 +6,7 @@ integer(4), intent(in)              ::  iorbit
 integer(4), intent(in)              ::  ipixel
 character(len=250), intent(out)     ::  filename_l2b
 
-character(len=100)                  ::  pathname
+character(len=220)                  ::  pathname
 character(len=100)                  ::  str
 
 
