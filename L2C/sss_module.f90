@@ -90,8 +90,8 @@ contains
       y_min = local_min(b0, b1, eps1, tol1, chi2, x_min)
 
       iflag_sss=0 ! o.k.
-      sss=x_min
-      chisq_sss=y_min
+      sss=real(x_min, 4)
+      chisq_sss=real(y_min, 4)
 
       return
    end subroutine sss_MLE
@@ -112,7 +112,7 @@ contains
       zsst=y_sst
       ztht=y_tht
       surtep=(zsst+273.15)
-      zsss=sss
+      zsss=real(sss, 4)
 
       call fdem0_meissner_wentz(freq_aq,ztht,zsst,zsss, ze0)
       ztb0 = ze0*surtep
